@@ -41,13 +41,19 @@ def main():
         choice = display_menu()
     if choice == 1:
         print("=== ADDING A PET ===")
+        add_pet()
     elif choice == 2:
         print("=== VIEW ALL PETS ===")
+        view_pets()
     elif choice == 3:
         print("=== SEE PET COUNT ===")
+        count_available_adopted()
     elif choice == 4:
         print("=== FIND A PET ===")
+        find_pet()
     elif choice == 5:
         print("=== EXIT ===")
     else:
         print("Enter a valid choice of number")
+
+main()
