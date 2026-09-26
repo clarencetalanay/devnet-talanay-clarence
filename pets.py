@@ -1,12 +1,12 @@
 pets = []
 
 def display_menu():
-    print("""=== Pet Adoption Records ===
-1. Add a pet
-2. View all pets
-3. Count available vs adopted
-4. Find a pet by name
-5. Exit""")
+    print("=== Pet Adoption Records ===")
+    print("1. Add a pet")
+    print("2. View all pets")
+    print("3. Count available vs adopted")
+    print("4. Find a pet by name")
+    print("5. Exit")
     pass
 
     choice = int(input("Choose an option:"))
@@ -29,7 +29,6 @@ def count_available_adopted(pet_list):
         break
     pass
 
-
 def find_pet(pet_list):
     pass
 
@@ -42,7 +41,6 @@ def main():
         choice = display_menu()
     if choice == 1:
         print("=== ADDING A PET ===")
-        
     elif choice == 2:
         print("=== VIEW ALL PETS ===")
     elif choice == 3:
