@@ -1,17 +1,46 @@
 import requests
 import random
 
-p1 = requests.get('https://pokeapi.co/api/v2/pokemon/p1')
-p2 = requests.get('https://pokeapi.co/api/v2/pokemon/p2')
-p3 = requests.get('https://pokeapi.co/api/v2/pokemon/p3')
-p4 = requests.get('https://pokeapi.co/api/v2/pokemon/p4')
-p5 = requests.get('https://pokeapi.co/api/v2/pokemon/p5')
+pokemon_list = ["bulbasaur", "charmander", "squirtle", "meowth", "froakie"]
+pokemon_data = {}
 
-name = ['name']
-height = ['height']
-weight = ['weight']
+for name in pokemon_list:
+    pokemon = requests.get(f"https://pokeapi.co/api/v2/pokemon/{name}")
+    data = pokemon.json()
+    pokemon_data[name] = {
+        "name": data["name"].capitalize(),
+        "height": data["height"],
+        "weight": data["weight"]
+    }
 
+choice = random.choice(list(pokemon_data.keys()))
+poke = pokemon_data[choice]
 
-pokemons = ["Bulbasaur", "Charmander", "Squirtle", "Meowth", "Froakie"]
-pnames = random.choice
-input(print("Who's that Pokemon?"))
+print("---Who's that Pokémon?---")
+print(f"Height: {poke['height']}")
+print(f"Weight: {poke['weight']}")
+print("\nChoices: bulbasaur, charmander, squirtle, meowth, froakie")
+
+win = False
+for attempt in range(1, 4):
+    guess = input(f"\nAttempt {attempt}/3 - Enter your guess: ")
+    
+    if guess not in pokemon_list:
+        print("\nINVALID POKEMON NAME! Try again.")
+        print(f"Height: {poke['height']}")
+        print(f"Weight: {poke['weight']}")
+        print("\nChoices: bulbasaur, charmander, squirtle, meowth, froakie")
+        continue
+        
+    if guess == poke['name'].lower():
+        print(f"CORRECT! It's {poke['name']}!")
+        win = True
+        break
+    else:
+        print("\nINCORRECT GUESS!")
+        print(f"Height: {poke['height']}")
+        print(f"Weight: {poke['weight']}")
+        print("\nChoices: bulbasaur, charmander, squirtle, meowth, froakie")
+
+if not win:
+    print(f"\nGame Over! The correct Pokémon was {poke['name']}.")
